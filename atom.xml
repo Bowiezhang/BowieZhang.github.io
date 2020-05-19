@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bowiezhang.github.io/</id>
     <title>养猪大户</title>
-    <updated>2020-05-19T05:37:22.551Z</updated>
+    <updated>2020-05-19T06:02:04.930Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bowiezhang.github.io/"/>
     <link rel="self" href="https://bowiezhang.github.io/atom.xml"/>
@@ -10,13 +10,4 @@
     <logo>https://bowiezhang.github.io/images/avatar.png</logo>
     <icon>https://bowiezhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 养猪大户</rights>
-    <entry>
-        <title type="html"><![CDATA[测试]]></title>
-        <id>https://bowiezhang.github.io/post/ce-shi/</id>
-        <link href="https://bowiezhang.github.io/post/ce-shi/">
-        </link>
-        <updated>2020-05-19T03:13:57.000Z</updated>
-        <content type="html"><![CDATA[<p>###测试</p>
-]]></content>
-    </entry>
 </feed>
