@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bowiezhang.github.io/</id>
     <title>养猪大户</title>
-    <updated>2020-05-22T10:51:05.342Z</updated>
+    <updated>2020-05-22T10:58:59.509Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bowiezhang.github.io/"/>
     <link rel="self" href="https://bowiezhang.github.io/atom.xml"/>
@@ -30,6 +30,9 @@ http.onload = () =&gt; {}
 http.send(formData)
 </code></pre>
 <h2 id="下载">下载</h2>
+<ul>
+<li>
+<p>form表单下载</p>
 <p>下载主要用form标签触发submit来下载</p>
 <pre><code class="language-javascript">form(
     action=&quot;exportUrl&quot;
@@ -39,6 +42,12 @@ http.send(formData)
 </code></pre>
 <p>比较需要注意的是，当method是get的时候，无法在action中携带参数，我们需要在form标签下添加<code>input(type=&quot;type&quot; name=&quot;name&quot; value=&quot;value&quot;)</code>来提供参数，提交的时候会自动携带。</p>
 <p>如果method是post，就可以直接在action中携带后缀了。如果出现参数过长的问题的时候，可以通过在form下添加<code>&lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;value&quot; /&gt;</code>，将params改为data进行提交(参数十分长的时候不应该使用GET来提交)。</p>
+</li>
+<li>
+<p>blob转换文件</p>
+<p>有的时候我们可以直接调用api获取到文件，但是此时文件是一串二进制，这时候需要将二进制先转换为blob，再通过创建a标签来下载blob文件。但是如果通过api来获取文件的时候，一般文件类型都会存在响应头中，而一般会在拦截器中将数据处理过，会导致拿不到响应头而无法确定文件类型，所以这种方法对于我来说并不是很常用。</p>
+</li>
+</ul>
 ]]></content>
     </entry>
 </feed>
