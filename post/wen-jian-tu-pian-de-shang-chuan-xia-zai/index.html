@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="前言
+由于公司项目基本上都会涉及到导入导出功能，但是编写的次数都并不是很多，导致每次写完后不记录下来再过几个月后需要重新写这个功能时需要翻查代码，所以花点时间将常见的一些方法记录下来
+上传
+使用input标签上传&lt;input type..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css">
+              
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/live2d.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/live2d.css">
-    <meta name="description" content="做人最紧要系开心" />
     <title>养猪大户</title>
 </head>
-<style>
-    @media screen and (max-width: 1300px) {
-        .archives-content ul li>span {
-            display: none;
-        }
-
-        .archives-content ul {
-            padding: 0px;
-        }
-    }
-</style>
 
 <body>
     <!-- 响应式布局，针对PC端内容显示 -->
@@ -277,20 +271,101 @@
             alert("博主暂未设置QQ联系方式");
     }
 </script></div>
-                <div id="main" class="col-xs-12 col-sm-7" style="z-index: 999;">
-                    <body>
-    <div id="friendscontainermobile">
-        
-        
-        
-    </div>
+                <div id="tab1" class="tab">
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="close"></div>
+                </div>
+                <div id="main" class="col-xs-12 col-sm-7">
+                    <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/font-awesome.css">
+<style>
 
-    <div id="friendscontainer">
-        
-        
-        
+</style>
+
+<body>
+    <div class="allcontent">
+        <div class="postshow">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;display: none">
+                <img src="\media\images\custom-postdefaultimage.png" class="postimage">
+            </div>
+            <div class="postinfo">
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-05-22</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="posttag">
+                    
+                </div>
+            </div>
+            
+            <div id="texttitle" style="text-align: center">
+                <h2>文件、图片的上传下载</h2>
+            </div>
+            <div class="text ">
+                <h2 id="前言">前言</h2>
+<p>由于公司项目基本上都会涉及到导入导出功能，但是编写的次数都并不是很多，导致每次写完后不记录下来再过几个月后需要重新写这个功能时需要翻查代码，所以花点时间将常见的一些方法记录下来</p>
+<h2 id="上传">上传</h2>
+<p>使用input标签上传<code>&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</code>，但是由于input样式实在不咋地，所以需要增加一个button，并将input标签隐藏起来。</p>
+<p>主要逻辑变成了：button(通过点击事件)-&gt;触发input点击事件-&gt;调起本地选取文件-&gt;选择文件后触发input的change事件，change事件中通过e.target.files获取到文件。</p>
+<p>获取到文件之后，需要通过接口上传到后台，由于axios一般都会在拦截器处进行序列号，如果直接通过axios上传file，序列号后会被自动忽略掉，所以我们一般通过新建formdata来进行上传。</p>
+<pre><code class="language-javascript">let formData = new FormData()
+formData.append('photo', photo) || formData.append('file', file)
+const http = new XMLHttpRequest()
+http.open('post', url, true)
+http.onload = () =&gt; {}
+http.send(formData)
+</code></pre>
+<h2 id="下载">下载</h2>
+<p>下载主要用form标签触发submit来下载</p>
+<pre><code class="language-javascript">form(
+    action=&quot;exportUrl&quot;
+    method=&quot;GET&quot;
+    style=&quot;display: none;&quot;
+)
+</code></pre>
+<p>比较需要注意的是，当method是get的时候，无法在action中携带参数，我们需要在form标签下添加<code>input(type=&quot;type&quot; name=&quot;name&quot; value=&quot;value&quot;)</code>来提供参数，提交的时候会自动携带。</p>
+<p>如果method是post，就可以直接在action中携带后缀了。如果出现参数过长的问题的时候，可以通过在form下添加<code>&lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;value&quot; /&gt;</code>，将params改为data进行提交(参数十分长的时候不应该使用GET来提交)。</p>
+
+            </div>
+            
+            
+        </div>
     </div>
 </body>
+<script>
+    var t_img; // 定时器
+    var isLoad = true; // 控制变量
+    isImgLoad(function () {
+        // 加载完成
+        $('.postdetailimg').css("display", "block");
+    });
+    // 判断图片加载的函数
+    function isImgLoad(callback) {
+        // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+        // 查找所有封面图，迭代处理
+        $('.postdetailimg').each(function () {
+            // 找到为0就将isLoad设为false，并退出each
+            if (this.height === 0) {
+                isLoad = false;
+                return false;
+            }
+        });
+        // 为true，没有发现为0的。加载完毕
+        if (isLoad) {
+            clearTimeout(t_img); // 清除定时器
+            // 回调函数
+            callback();
+            // 为false，因为找到了没有加载完成的图，将调用定时器递归
+        } else {
+            isLoad = true;
+            t_img = setTimeout(function () {
+                isImgLoad(callback); // 递归扫描
+            }, 500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+        }
+    }
+</script>
                     <div name="comment" style="background: white">
                         <div class="commentcontainer">
                             
@@ -383,14 +458,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2"></div>
+                <div class="toc-container">
+                    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%B8%8A%E4%BC%A0">上传</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BD">下载</a></li>
+</ul>
+</li>
+</ul>
+
+                </div>
             </div>
         </div>
         <div id="bg">
         </div>
         <div id="bgurl" style="display:none">\media\images\custom-bgimage.jpg</div>
     </div>
-
     <!-- 响应式布局，针对手机端内容显示 -->
     <div class="nav-small">
         <head>
@@ -465,21 +550,93 @@
   <!-- 引入BootStrap核心js文件 -->
   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-        <div style="margin-top:60px"></div>
-        <body>
-    <div id="friendscontainermobile">
-        
-        
-        
-    </div>
+        <div style="margin-top:30px"></div>
+        <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/font-awesome.css">
+<style>
 
-    <div id="friendscontainer">
-        
-        
-        
+</style>
+
+<body>
+    <div class="allcontent">
+        <div class="postshow">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;display: none">
+                <img src="\media\images\custom-postdefaultimage.png" class="postimage">
+            </div>
+            <div class="postinfo">
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-05-22</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="posttag">
+                    
+                </div>
+            </div>
+            
+            <div id="texttitle" style="text-align: center">
+                <h2>文件、图片的上传下载</h2>
+            </div>
+            <div class="text ">
+                <h2 id="前言">前言</h2>
+<p>由于公司项目基本上都会涉及到导入导出功能，但是编写的次数都并不是很多，导致每次写完后不记录下来再过几个月后需要重新写这个功能时需要翻查代码，所以花点时间将常见的一些方法记录下来</p>
+<h2 id="上传">上传</h2>
+<p>使用input标签上传<code>&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</code>，但是由于input样式实在不咋地，所以需要增加一个button，并将input标签隐藏起来。</p>
+<p>主要逻辑变成了：button(通过点击事件)-&gt;触发input点击事件-&gt;调起本地选取文件-&gt;选择文件后触发input的change事件，change事件中通过e.target.files获取到文件。</p>
+<p>获取到文件之后，需要通过接口上传到后台，由于axios一般都会在拦截器处进行序列号，如果直接通过axios上传file，序列号后会被自动忽略掉，所以我们一般通过新建formdata来进行上传。</p>
+<pre><code class="language-javascript">let formData = new FormData()
+formData.append('photo', photo) || formData.append('file', file)
+const http = new XMLHttpRequest()
+http.open('post', url, true)
+http.onload = () =&gt; {}
+http.send(formData)
+</code></pre>
+<h2 id="下载">下载</h2>
+<p>下载主要用form标签触发submit来下载</p>
+<pre><code class="language-javascript">form(
+    action=&quot;exportUrl&quot;
+    method=&quot;GET&quot;
+    style=&quot;display: none;&quot;
+)
+</code></pre>
+<p>比较需要注意的是，当method是get的时候，无法在action中携带参数，我们需要在form标签下添加<code>input(type=&quot;type&quot; name=&quot;name&quot; value=&quot;value&quot;)</code>来提供参数，提交的时候会自动携带。</p>
+<p>如果method是post，就可以直接在action中携带后缀了。如果出现参数过长的问题的时候，可以通过在form下添加<code>&lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;value&quot; /&gt;</code>，将params改为data进行提交(参数十分长的时候不应该使用GET来提交)。</p>
+
+            </div>
+            
+            
+        </div>
     </div>
 </body>
-        <div style="margin-bottom:60px">&nbsp;</div>
+<script>
+    var t_img; // 定时器
+    var isLoad = true; // 控制变量
+    isImgLoad(function () {
+        // 加载完成
+        $('.postdetailimg').css("display", "block");
+    });
+    // 判断图片加载的函数
+    function isImgLoad(callback) {
+        // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
+        // 查找所有封面图，迭代处理
+        $('.postdetailimg').each(function () {
+            // 找到为0就将isLoad设为false，并退出each
+            if (this.height === 0) {
+                isLoad = false;
+                return false;
+            }
+        });
+        // 为true，没有发现为0的。加载完毕
+        if (isLoad) {
+            clearTimeout(t_img); // 清除定时器
+            // 回调函数
+            callback();
+            // 为false，因为找到了没有加载完成的图，将调用定时器递归
+        } else {
+            isLoad = true;
+            t_img = setTimeout(function () {
+                isImgLoad(callback); // 递归扫描
+            }, 500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+        }
+    }
+</script>
         <div name="comment" style="background: white">
             <div class="commentcontainer">
                 
@@ -632,9 +789,10 @@
         <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
     </div>
 </body>
-
-</html>
-<script src="https://bowiezhang.github.io//media/js/index.js"></script>
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+<script src="https://bowiezhang.github.io//media/js/post.js"></script>
 
 <script type="text/javascript">
     var message_Path = '/live2d/'

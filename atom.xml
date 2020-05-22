@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bowiezhang.github.io/</id>
     <title>养猪大户</title>
-    <updated>2020-05-19T06:02:04.930Z</updated>
+    <updated>2020-05-22T10:51:05.342Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bowiezhang.github.io/"/>
     <link rel="self" href="https://bowiezhang.github.io/atom.xml"/>
@@ -10,4 +10,35 @@
     <logo>https://bowiezhang.github.io/images/avatar.png</logo>
     <icon>https://bowiezhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 养猪大户</rights>
+    <entry>
+        <title type="html"><![CDATA[文件、图片的上传下载]]></title>
+        <id>https://bowiezhang.github.io/post/wen-jian-tu-pian-de-shang-chuan-xia-zai/</id>
+        <link href="https://bowiezhang.github.io/post/wen-jian-tu-pian-de-shang-chuan-xia-zai/">
+        </link>
+        <updated>2020-05-22T08:22:28.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p>由于公司项目基本上都会涉及到导入导出功能，但是编写的次数都并不是很多，导致每次写完后不记录下来再过几个月后需要重新写这个功能时需要翻查代码，所以花点时间将常见的一些方法记录下来</p>
+<h2 id="上传">上传</h2>
+<p>使用input标签上传<code>&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</code>，但是由于input样式实在不咋地，所以需要增加一个button，并将input标签隐藏起来。</p>
+<p>主要逻辑变成了：button(通过点击事件)-&gt;触发input点击事件-&gt;调起本地选取文件-&gt;选择文件后触发input的change事件，change事件中通过e.target.files获取到文件。</p>
+<p>获取到文件之后，需要通过接口上传到后台，由于axios一般都会在拦截器处进行序列号，如果直接通过axios上传file，序列号后会被自动忽略掉，所以我们一般通过新建formdata来进行上传。</p>
+<pre><code class="language-javascript">let formData = new FormData()
+formData.append('photo', photo) || formData.append('file', file)
+const http = new XMLHttpRequest()
+http.open('post', url, true)
+http.onload = () =&gt; {}
+http.send(formData)
+</code></pre>
+<h2 id="下载">下载</h2>
+<p>下载主要用form标签触发submit来下载</p>
+<pre><code class="language-javascript">form(
+    action=&quot;exportUrl&quot;
+    method=&quot;GET&quot;
+    style=&quot;display: none;&quot;
+)
+</code></pre>
+<p>比较需要注意的是，当method是get的时候，无法在action中携带参数，我们需要在form标签下添加<code>input(type=&quot;type&quot; name=&quot;name&quot; value=&quot;value&quot;)</code>来提供参数，提交的时候会自动携带。</p>
+<p>如果method是post，就可以直接在action中携带后缀了。如果出现参数过长的问题的时候，可以通过在form下添加<code>&lt;input type=&quot;hidden&quot; name=&quot;name&quot; value=&quot;value&quot; /&gt;</code>，将params改为data进行提交(参数十分长的时候不应该使用GET来提交)。</p>
+]]></content>
+    </entry>
 </feed>
