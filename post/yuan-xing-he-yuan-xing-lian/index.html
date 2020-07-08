@@ -1,14 +1,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="JS所有对象分为函数对象和普通对象。凡是通过new Function()创建得来的对象都是函数对象。函数对象拥有prototype属性和__proto__属性。
+new Object()只有__proto__属性，prototype为und..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://bowiezhang.github.io//media/css/bootstrap.min.css">
     
@@ -297,7 +291,7 @@
                 <img src="\media\images\custom-postdefaultimage.png" class="postimage">
             </div>
             <div class="postinfo">
-                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-25</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-07-08</div>
                 <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
                 <div class="posttag">
                     
@@ -305,19 +299,33 @@
             </div>
             
             <div id="texttitle" style="text-align: center">
-                <h2>关于</h2>
+                <h2>原型和原型链</h2>
             </div>
             <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <p>JS所有对象分为函数对象和普通对象。凡是通过new Function()创建得来的对象都是函数对象。函数对象拥有prototype属性和<code>__proto__</code>属性。<br>
+new Object()只有<code>__proto__</code>属性，prototype为undefined。</p>
+<h3 id="prototype">prototype</h3>
+<blockquote>
+<p>JS设计之初为了实现简单继承，引入了prototype属性，也叫原型对象（显式原型）。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<p>从本质上讲，prototype是一个普通对象，是函数对象的构造函数创建的一个实例。相当于在Function创建的时候，自动创建了一个它的实例，并且把这个实例赋值给了prototype。</p>
+<h3 id="__proto__"><code>__proto__</code></h3>
+<blockquote>
+<p>所有的对象obj(null和undefined除外)都具有<code>__proto__</code>属性（隐式原型），<code>__proto__</code>属性在本质上为一个指针，指向函数对象的prototype属性。</p>
+</blockquote>
+<p>简单的来说，<code>__proto__</code>这个属性指向的是创建自己的构造函数的原型对象（prototype）</p>
+<h3 id="constructor">constructor</h3>
+<p>顾名思义，构造器constructor就是用来构造函数对象的，constructor 属性返回对创建此对象的函数对象的引用。</p>
 
             </div>
             
+            
+            <div class="next-post">
+                下一篇
+                <a href="https://bowiezhang.github.io/post/qing-chu-fu-dong-he-bfc/">
+                    清除浮动和BFC
+                </a>
+            </div>
             
         </div>
     </div>
@@ -450,10 +458,13 @@
                     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li><a href="#prototype">prototype</a></li>
+<li><a href="#__proto__"><code>__proto__</code></a></li>
+<li><a href="#constructor">constructor</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -553,7 +564,7 @@
                 <img src="\media\images\custom-postdefaultimage.png" class="postimage">
             </div>
             <div class="postinfo">
-                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-25</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020-07-08</div>
                 <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
                 <div class="posttag">
                     
@@ -561,19 +572,33 @@
             </div>
             
             <div id="texttitle" style="text-align: center">
-                <h2>关于</h2>
+                <h2>原型和原型链</h2>
             </div>
             <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <p>JS所有对象分为函数对象和普通对象。凡是通过new Function()创建得来的对象都是函数对象。函数对象拥有prototype属性和<code>__proto__</code>属性。<br>
+new Object()只有<code>__proto__</code>属性，prototype为undefined。</p>
+<h3 id="prototype">prototype</h3>
+<blockquote>
+<p>JS设计之初为了实现简单继承，引入了prototype属性，也叫原型对象（显式原型）。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<p>从本质上讲，prototype是一个普通对象，是函数对象的构造函数创建的一个实例。相当于在Function创建的时候，自动创建了一个它的实例，并且把这个实例赋值给了prototype。</p>
+<h3 id="__proto__"><code>__proto__</code></h3>
+<blockquote>
+<p>所有的对象obj(null和undefined除外)都具有<code>__proto__</code>属性（隐式原型），<code>__proto__</code>属性在本质上为一个指针，指向函数对象的prototype属性。</p>
+</blockquote>
+<p>简单的来说，<code>__proto__</code>这个属性指向的是创建自己的构造函数的原型对象（prototype）</p>
+<h3 id="constructor">constructor</h3>
+<p>顾名思义，构造器constructor就是用来构造函数对象的，constructor 属性返回对创建此对象的函数对象的引用。</p>
 
             </div>
             
+            
+            <div class="next-post">
+                下一篇
+                <a href="https://bowiezhang.github.io/post/qing-chu-fu-dong-he-bfc/">
+                    清除浮动和BFC
+                </a>
+            </div>
             
         </div>
     </div>

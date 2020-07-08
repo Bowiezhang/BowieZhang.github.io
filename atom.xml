@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bowiezhang.github.io/</id>
     <title>养猪大户</title>
-    <updated>2020-07-04T06:37:47.685Z</updated>
+    <updated>2020-07-08T13:33:36.640Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bowiezhang.github.io/"/>
     <link rel="self" href="https://bowiezhang.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://bowiezhang.github.io/images/avatar.png</logo>
     <icon>https://bowiezhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 养猪大户</rights>
+    <entry>
+        <title type="html"><![CDATA[原型和原型链]]></title>
+        <id>https://bowiezhang.github.io/post/yuan-xing-he-yuan-xing-lian/</id>
+        <link href="https://bowiezhang.github.io/post/yuan-xing-he-yuan-xing-lian/">
+        </link>
+        <updated>2020-07-08T12:55:08.000Z</updated>
+        <content type="html"><![CDATA[<p>JS所有对象分为函数对象和普通对象。凡是通过new Function()创建得来的对象都是函数对象。函数对象拥有prototype属性和<code>__proto__</code>属性。<br>
+new Object()只有<code>__proto__</code>属性，prototype为undefined。</p>
+<h3 id="prototype">prototype</h3>
+<blockquote>
+<p>JS设计之初为了实现简单继承，引入了prototype属性，也叫原型对象（显式原型）。</p>
+</blockquote>
+<p>从本质上讲，prototype是一个普通对象，是函数对象的构造函数创建的一个实例。相当于在Function创建的时候，自动创建了一个它的实例，并且把这个实例赋值给了prototype。</p>
+<h3 id="__proto__"><code>__proto__</code></h3>
+<blockquote>
+<p>所有的对象obj(null和undefined除外)都具有<code>__proto__</code>属性（隐式原型），<code>__proto__</code>属性在本质上为一个指针，指向函数对象的prototype属性。</p>
+</blockquote>
+<p>简单的来说，<code>__proto__</code>这个属性指向的是创建自己的构造函数的原型对象（prototype）</p>
+<h3 id="constructor">constructor</h3>
+<p>顾名思义，构造器constructor就是用来构造函数对象的，constructor 属性返回对创建此对象的函数对象的引用。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[清除浮动和BFC]]></title>
         <id>https://bowiezhang.github.io/post/qing-chu-fu-dong-he-bfc/</id>
