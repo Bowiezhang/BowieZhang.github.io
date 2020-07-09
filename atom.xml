@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bowiezhang.github.io/</id>
     <title>养猪大户</title>
-    <updated>2020-07-08T13:38:08.036Z</updated>
+    <updated>2020-07-09T10:41:55.800Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bowiezhang.github.io/"/>
     <link rel="self" href="https://bowiezhang.github.io/atom.xml"/>
@@ -10,6 +10,25 @@
     <logo>https://bowiezhang.github.io/images/avatar.png</logo>
     <icon>https://bowiezhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 养猪大户</rights>
+    <entry>
+        <title type="html"><![CDATA[支持大量数据的树组件]]></title>
+        <id>https://bowiezhang.github.io/post/zhi-chi-da-liang-shu-ju-de-shu-zu-jian/</id>
+        <link href="https://bowiezhang.github.io/post/zhi-chi-da-liang-shu-ju-de-shu-zu-jian/">
+        </link>
+        <updated>2020-07-09T10:01:55.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="前言">前言</h3>
+<p>公司之前由于出现了几千条数据的树，用组件的树直接卡死，所以需要自己写一个能支持大量数据的树组件<br>
+源码：<a href="https://github.com/Bowiezhang/vue-bigDataTree">vue-bigDataTree</a></p>
+<h3 id="主要思想">主要思想</h3>
+<p>之前在使用组件树的时候，使用过chrome的控制台进行分析过，其实造成卡顿大部分的原因是因为需要渲染几千个节点。</p>
+<ol>
+<li>更改DOM的结构为平级结构，树节点的父子关系由样式去控制</li>
+<li>使用虚拟列表来渲染数据，用两层样式来控制滚动显示的数据。</li>
+</ol>
+<p>第一点其实就是为了减少对数据遍历的深度，减少当出现大量层级的时候需要迭代处理<br>
+第二点主要由两层盒子去控制，底下的盒子高度通过树的节点数量来计算高度，来展示一个实际全部渲染数据时会产生的高度，用来产生视觉上的滚动。虚拟列表的展示数据的盒子浮动在底下盒子的上方，通过监听滚动底下盒子的scroll来判断需要展示的数据，动态更换虚拟列表里的数据，同时通过scroll的值和transform来控制虚拟列表的盒子始终在视觉的正中间。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[原型和原型链]]></title>
         <id>https://bowiezhang.github.io/post/yuan-xing-he-yuan-xing-lian/</id>
